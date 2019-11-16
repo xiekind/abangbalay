@@ -12,7 +12,6 @@
           <h4 class="modal-title">Create account</h4>
         </div>
         <div class="modal-body">
-            <v-text-field v-model="username" label="Username" placeholder type="text" outlined dense></v-text-field>
             <v-text-field v-model="email" label="Email" placeholder type="text" outlined dense></v-text-field>
             <v-text-field v-model="password" label="Password" placeholder type="password" outlined dense ></v-text-field>
           <div class="form-group">
@@ -125,15 +124,24 @@
 </style>
 
 <script>
-// import ROUTER from 'router';
+import AUTH from "services/auth";
+
 export default {
   data() {
     return {
       email: null,
       password: null,
-      username: null
     };
   },
-  
+  methods: {
+    submit(e){
+      e.preventDefault()
+      sessionStorage.setItem("Email", this.email);
+      sessionStorage.setItem("Password", this.password);
+      let user = AUTH.register(this.email, this.password);
+      AUTH.setUser(user);
+      this.$swal.fire("Welcome, You are now Logged in", "success");
+    }
+  }
 };
 </script>

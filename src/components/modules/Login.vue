@@ -33,8 +33,8 @@
             <button
               type="submit"
               class="btn btn-primary btn-lg btn-block login-btn"
-              @click="login"
               v-on:click="overlay = !overlay"
+              @click="login"
             >Next</button>
           </div>
           <center>
@@ -137,6 +137,7 @@
 <script>
 import ROUTER from "router";
 // import axios from 'axios';
+import AUTH from "services/auth";
 export default {
   data() {
     return {
@@ -153,8 +154,19 @@ export default {
       },
     },
   methods: {
-    login() {
-      ROUTER.push('/customerdashboard')
+    login(e) {
+      e.preventDefault()
+      let user = AUTH.login(this.email, this.password);
+      AUTH.setUser(user);
+      if(user != null){
+        ROUTER.push('/customerdashboard');
+        this.$swal.fire("Welcome, You are now Logged in", "success");
+      }else if(this.email === '' && this.password === ''){
+        this.$swal.fire("Please fill up the input field", " ", "warning");
+      }else{
+        this.$swal.fire("Incorrect username or password!", "Please try again", "error");
+      
+    }
       // axios
       //   .post("http://localhost:5555/login", {
       //     username: this.email,

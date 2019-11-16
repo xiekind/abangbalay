@@ -72,6 +72,7 @@
 export default {
   data() {
     return {
+      drawer: false,
       absolute: false,
       opacity: 0.46,
       overlay: false,

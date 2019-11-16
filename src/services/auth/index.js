@@ -9,22 +9,23 @@ export default {
     getUser(user) {
         return user
     },
-    register(username, email, password) {
-        if (username == '' || password == '' || email == '') {
-            ROUTER.push("/signup")
-        }else{
+    register(email, password) {
+        if (email == '' || password == '') {
+            ROUTER.push("/createaccount")
+        } else {
             this.RegisteredUser.push({
-                Username: username,
                 Password: password,
                 Email: email
             });
             ROUTER.push("/customerdashboard");
         }
     },
-    login(username, password) {
+    login(email, password) {
         for (let i = 0; i < this.RegisteredUser.length; i++) {
-            if (this.RegisteredUser[i].Username === username && this.RegisteredUser[i].Password === password) {
+            if (this.RegisteredUser[i].Email === email && this.RegisteredUser[i].Password === password) {
+                ROUTER.push('/customerdashboard')
                 return this.RegisteredUser[i]
+
             }
         }
         return null;
