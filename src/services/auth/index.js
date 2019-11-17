@@ -17,13 +17,13 @@ export default {
                 Password: password,
                 Email: email
             });
-            ROUTER.push("/customerdashboard");
+            ROUTER.push("/boarderdashboard");
         }
     },
     login(email, password) {
         for (let i = 0; i < this.RegisteredUser.length; i++) {
             if (this.RegisteredUser[i].Email === email && this.RegisteredUser[i].Password === password) {
-                ROUTER.push('/customerdashboard')
+                ROUTER.push('/boarderdashboard')
                 return this.RegisteredUser[i]
 
             }

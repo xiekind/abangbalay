@@ -29,7 +29,7 @@ export default {
         name: 'boarderdashboard',
         component: resolve => require(['components/modules/Boarder/Dashboard.vue'], resolve),
         meta: {
-            tokenRequired: false
+            tokenRequired: true
         }
     }
     ]

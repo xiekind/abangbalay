@@ -159,7 +159,7 @@ export default {
       let user = AUTH.login(this.email, this.password);
       AUTH.setUser(user);
       if(user != null){
-        ROUTER.push('/customerdashboard');
+        ROUTER.push('/boarderdashboard');
         this.$swal.fire("Welcome, You are now Logged in", "success");
       }else if(this.email === '' && this.password === ''){
         this.$swal.fire("Please fill up the input field", " ", "warning");

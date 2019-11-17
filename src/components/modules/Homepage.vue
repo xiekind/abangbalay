@@ -16,7 +16,7 @@
             <v-autocomplete
               v-model="select"
               :loading="loading"
-              :items="items"
+              :items="['Banilad', 'Talamban']"
               :search-input.sync="search"
               cache-items
               class="mx-3"
@@ -72,20 +72,7 @@ export default {
       slider: 45,
       select: "",
       places: ["Banilad", "Talamban"],
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        }
-      ]
+      
     };
   },
   components: {

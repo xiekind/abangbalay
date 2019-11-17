@@ -11,13 +11,14 @@
               src="https://www.passerellesnumeriques.org/wp-content/uploads/2018/07/IMG_20180419_144038.png"
             >
               <v-card-actions>
-                <v-btn class="ma-2" color="orange darken-2" dark @click="overlay = !overlay">
+                <!-- <v-btn class="ma-2" color="orange darken-2" dark @click="overlay = !overlay">
                   <v-icon dark left>mdi-pin</v-icon>Location
-                </v-btn>
+                </v-btn> -->
+                <Map></Map>
               </v-card-actions>
             </v-img>
             <v-overlay :absolute="absolute" :opacity="opacity" :value="overlay" :z-index="zIndex">
-              <v-btn id="backbtn" color="orange darken-2" @click="overlay = false" >
+              <v-btn id="backbtn" color="orange darken-2" @click="overlay = false">
                 <v-icon small>mdi-arrow-left</v-icon>
               </v-btn>
               <v-card>
@@ -41,7 +42,6 @@
               <div>• Fans and double deck</div>
               <div>• Lady guard at night</div>
             </v-card-text>
-           
           </v-col>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-col>
@@ -51,9 +51,10 @@
                 <br />
                 <h3>₱ 1,500 monthly</h3>
               </v-card-text>
-              <v-btn class="ma-2" color="success">
+              <Form></Form>
+              <!-- <v-btn class="ma-2" color="success">
                 <v-icon dark left>mdi-check</v-icon>Select
-              </v-btn>
+              </v-btn> -->
             </center>
           </v-col>
         </v-row>
@@ -64,11 +65,13 @@
 
 
 <style>
-
-
 </style>
 
 <script>
+import Form from "components/modules/Form.vue";
+import Map from "components/modules/Map.vue";
+
+
 export default {
   data() {
     return {
@@ -78,6 +81,7 @@ export default {
       overlay: false,
       zIndex: 5
     };
-  }
+  },
+  components: {Form,Map}
 };
 </script>
