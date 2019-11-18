@@ -2,7 +2,7 @@
 <div id="topnav">
     <v-toolbar id="toolbar"  >
       <v-app-bar-nav-icon color="black darken-2" @click.stop="drawer = !drawer" 
-      v-if="auth.user == null"></v-app-bar-nav-icon>
+      v-if="auth.user==null"></v-app-bar-nav-icon>
       <!-- v-if="$route.name!='login'" -->
       <v-toolbar-title>
         <v-img 
