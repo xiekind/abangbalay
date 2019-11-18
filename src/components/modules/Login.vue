@@ -135,12 +135,13 @@
 </style>
 
 <script>
-import ROUTER from "router";
+// import ROUTER from "router";
 // import axios from 'axios';
 import AUTH from "services/auth";
 export default {
   data() {
     return {
+      auth: AUTH,
       overlay: false,
       email: null,
       password: null
@@ -159,7 +160,7 @@ export default {
       let user = AUTH.login(this.email, this.password);
       AUTH.setUser(user);
       if(user != null){
-        ROUTER.push('/boarderdashboard');
+        this.$router.push('/dashboard');
         this.$swal.fire("Welcome, You are now Logged in", "success");
       }else if(this.email === '' && this.password === ''){
         this.$swal.fire("Please fill up the input field", " ", "warning");

@@ -31,11 +31,11 @@
           </v-toolbar>
         </v-col>
       </center>
-      <v-subheader class="pl-0">Prices</v-subheader>
+      <!-- <v-subheader class="pl-0">Prices</v-subheader>
         <v-slider
           v-model="slider"
           thumb-label
-        ></v-slider>          
+        ></v-slider>           -->
     </v-card>
 
     <Results></Results>

@@ -17,22 +17,16 @@ export default {
                 Password: password,
                 Email: email
             });
-            ROUTER.push("/boarderdashboard");
+            ROUTER.push("/dashboard");
         }
     },
     login(email, password) {
         for (let i = 0; i < this.RegisteredUser.length; i++) {
             if (this.RegisteredUser[i].Email === email && this.RegisteredUser[i].Password === password) {
-                ROUTER.push('/boarderdashboard')
+                ROUTER.push('/dashboard')
                 return this.RegisteredUser[i]
-
             }
         }
-        return null;
     },
-    // saveInfo(username,email){
-    //     sessionStorage.setItem("Username", username),
-    //     sessionStorage.setItem("Email", email),
-    //     ROUTER.push('/');
-    // }
+
 }

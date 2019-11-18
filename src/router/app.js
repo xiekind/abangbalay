@@ -25,8 +25,8 @@ export default {
         }
     },
     {
-        path: '/boarderdashboard',
-        name: 'boarderdashboard',
+        path: '/dashboard',
+        name: 'dashboard',
         component: resolve => require(['components/modules/Boarder/Dashboard.vue'], resolve),
         meta: {
             tokenRequired: true

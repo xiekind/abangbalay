@@ -129,6 +129,7 @@ import AUTH from "services/auth";
 export default {
   data() {
     return {
+      auth: AUTH,
       email: null,
       password: null,
     };
@@ -136,9 +137,9 @@ export default {
   methods: {
     submit(e){
       e.preventDefault()
+      let user = AUTH.register(this.email, this.password);
       sessionStorage.setItem("Email", this.email);
       sessionStorage.setItem("Password", this.password);
-      let user = AUTH.register(this.email, this.password);
       AUTH.setUser(user);
       this.$swal.fire("Welcome, You are now Logged in", "success");
     }
