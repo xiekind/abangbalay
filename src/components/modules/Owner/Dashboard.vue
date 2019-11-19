@@ -1,6 +1,6 @@
 <template>
     <div id="dashboard">
-            <Create></Create>
+            <CurrentBhouse></CurrentBhouse>
 
     </div>
 </template>
@@ -11,11 +11,11 @@
 </style>
 
 <script>
-import Create from "components/modules/Owner/Create.vue";
+import CurrentBhouse from "components/modules/Owner/CurrentBhouse.vue";
 export default {
     name: "dashboard",
     components: {
-        Create
+        CurrentBhouse
     }
 }
 </script>
