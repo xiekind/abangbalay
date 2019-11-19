@@ -15,10 +15,7 @@
           <v-toolbar dense>
             <v-autocomplete
               v-model="select"
-              :loading="loading"
-              :items="['Banilad', 'Talamban']"
-              :search-input.sync="search"
-              cache-items
+              :items="['Talamban']"
               class="mx-3"
               flat
               hide-no-data
@@ -71,8 +68,6 @@ export default {
     return {
       slider: 45,
       select: "",
-      places: ["Banilad", "Talamban"],
-      
     };
   },
   components: {

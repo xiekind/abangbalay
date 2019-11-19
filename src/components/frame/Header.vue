@@ -32,6 +32,7 @@
             :key="index" 
             :to="item.link"
             >
+            
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -40,7 +41,9 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        
         </v-list-item-group>
+
       </v-list>
       </v-navigation-drawer>
       <v-toolbar-items >
@@ -73,7 +76,7 @@
 
 <script>
 
-// import Sidebar from 'components/frame/Sidebar.vue'
+// import Account from 'components/modules/Owner/Account.vue'
 import ROUTER from "router";
 import AUTH from "services/auth";
 
@@ -86,14 +89,12 @@ export default {
       group: null,
       items: [
         { icon: "mdi-view-dashboard", title: "Dashboard", link: "/dashboard" },
-        { icon: "mdi-timetable", title: "Services", link: "/services" },
-        { icon: "mdi-account-multiple", title: "Clients", link: "/clients" },
-        { icon: "mdi-account", title: "Account", link: "/account" }
+        { icon: "mdi-account", title: "Account", link: "/account" },
       ]
     }
   },
   components: {
-    // Sidebar,
+    // Account,
   },
   watch: {
     group() {

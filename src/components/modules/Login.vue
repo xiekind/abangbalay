@@ -53,15 +53,16 @@
 <style scoped lang="scss">
 @import "assets/styles/colors.scss";
 
+
 .modal-login {
   color: $modal-login !important;
   width: $width350 !important;
 }
-// .modal-login .modal-content {
-//   margin-top: 30% !important;
-//   border-radius: $border-radius !important;
-//   border: 1px solid gray !important;
-// }
+.modal-login .modal-content {
+  margin-top: 30% !important;
+  border-radius: $border-radius !important;
+  border: 1px solid gray !important;
+}
 .modal-login .modal-header {
   border-bottom: $none !important;
   position: $relative !important;
