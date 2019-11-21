@@ -3,7 +3,7 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="600px">
         <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on">Upload</v-btn>
+          <v-btn large fab v-on="on"><v-icon dark>mdi-plus</v-icon></v-btn>
         </template>
         <v-card>
           <v-card-title>
@@ -26,9 +26,7 @@
   </div>
 </template>
 <style scoped>
-.upload {
-  margin-left: 6% !important;
-}
+
 </style>
 <script>
 export default {

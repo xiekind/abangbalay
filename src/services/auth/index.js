@@ -24,6 +24,7 @@ export default {
         for (let i = 0; i < this.RegisteredUser.length; i++) {
             if (this.RegisteredUser[i].Email === email && this.RegisteredUser[i].Password === password) {
                 ROUTER.push('/dashboard')
+                console.log(this.RegisteredUser[i]);
                 return this.RegisteredUser[i]
             }
         }

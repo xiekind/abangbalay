@@ -44,9 +44,9 @@
         </div>
       </div>
     </div>
-  <v-overlay :value="overlay">
+  <!-- <v-overlay :value="overlay">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
-    </v-overlay>
+    </v-overlay> -->
   </div>
 </template>
 
@@ -143,23 +143,22 @@ export default {
   data() {
     return {
       auth: AUTH,
-      overlay: false,
+      // overlay: false,
       email: null,
       password: null
     };
   },
-  watch: {
-      overlay (val) {
-        val && setTimeout(() => {
-          this.overlay = false
-        }, 3000)
-      },
-    },
+  // watch: {
+  //     overlay (val) {
+  //       val && setTimeout(() => {
+  //         this.overlay = false
+  //       }, 3000)
+  //     },
+  //   },
   methods: {
     login(e) {
       e.preventDefault()
       let user = AUTH.login(this.email, this.password);
-      AUTH.setUser(user);
       if(user != null){
         this.$router.push('/dashboard');
         this.$swal.fire("Welcome, You are now Logged in", "success");
