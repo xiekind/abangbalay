@@ -9,29 +9,24 @@ export default {
     getUser(user) {
         return user
     },
-    register(username, email, password) {
-        if (username == '' || password == '' || email == '') {
-            ROUTER.push("/signup")
-        }else{
+    register(email, password) {
+        if (email == '' || password == '') {
+            ROUTER.push("/createaccount")
+        } else {
             this.RegisteredUser.push({
-                Username: username,
                 Password: password,
                 Email: email
             });
-            ROUTER.push("/customerdashboard");
+            ROUTER.push("/dashboard");
         }
     },
-    login(username, password) {
+    login(email, password) {
         for (let i = 0; i < this.RegisteredUser.length; i++) {
-            if (this.RegisteredUser[i].Username === username && this.RegisteredUser[i].Password === password) {
+            if (this.RegisteredUser[i].Email === email && this.RegisteredUser[i].Password === password) {
+                ROUTER.push('/dashboard')
                 return this.RegisteredUser[i]
             }
         }
-        return null;
     },
-    // saveInfo(username,email){
-    //     sessionStorage.setItem("Username", username),
-    //     sessionStorage.setItem("Email", email),
-    //     ROUTER.push('/');
-    // }
+
 }

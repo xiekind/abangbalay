@@ -33,8 +33,8 @@
             <button
               type="submit"
               class="btn btn-primary btn-lg btn-block login-btn"
-              @click="login"
               v-on:click="overlay = !overlay"
+              @click="login"
             >Next</button>
           </div>
           <center>
@@ -53,15 +53,16 @@
 <style scoped lang="scss">
 @import "assets/styles/colors.scss";
 
+
 .modal-login {
   color: $modal-login !important;
   width: $width350 !important;
 }
-// .modal-login .modal-content {
-//   margin-top: 30% !important;
-//   border-radius: $border-radius !important;
-//   border: 1px solid gray !important;
-// }
+.modal-login .modal-content {
+  margin-top: 30% !important;
+  border-radius: $border-radius !important;
+  border: 1px solid gray !important;
+}
 .modal-login .modal-header {
   border-bottom: $none !important;
   position: $relative !important;
@@ -135,11 +136,13 @@
 </style>
 
 <script>
-import ROUTER from "router";
+// import ROUTER from "router";
 // import axios from 'axios';
+import AUTH from "services/auth";
 export default {
   data() {
     return {
+      auth: AUTH,
       overlay: false,
       email: null,
       password: null
@@ -153,8 +156,19 @@ export default {
       },
     },
   methods: {
-    login() {
-      ROUTER.push('/customerdashboard')
+    login(e) {
+      e.preventDefault()
+      let user = AUTH.login(this.email, this.password);
+      AUTH.setUser(user);
+      if(user != null){
+        this.$router.push('/dashboard');
+        this.$swal.fire("Welcome, You are now Logged in", "success");
+      }else if(this.email === '' && this.password === ''){
+        this.$swal.fire("Please fill up the input field", " ", "warning");
+      }else{
+        this.$swal.fire("Incorrect username or password!", "Please try again", "error");
+      
+    }
       // axios
       //   .post("http://localhost:5555/login", {
       //     username: this.email,

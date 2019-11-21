@@ -12,7 +12,6 @@
           <h4 class="modal-title">Create account</h4>
         </div>
         <div class="modal-body">
-            <v-text-field v-model="username" label="Username" placeholder type="text" outlined dense></v-text-field>
             <v-text-field v-model="email" label="Email" placeholder type="text" outlined dense></v-text-field>
             <v-text-field v-model="password" label="Password" placeholder type="password" outlined dense ></v-text-field>
           <div class="form-group">
@@ -40,9 +39,7 @@
 
 <style scoped lang="scss">
 @import "assets/styles/colors.scss";
-.Create {
-  margin-top: $D20px !important;
-}
+
 .modal-login {
   color: $modal-login !important;
   width: $width350 !important;
@@ -125,15 +122,25 @@
 </style>
 
 <script>
-// import ROUTER from 'router';
+import AUTH from "services/auth";
+
 export default {
   data() {
     return {
+      auth: AUTH,
       email: null,
       password: null,
-      username: null
     };
   },
-  
+  methods: {
+    submit(e){
+      e.preventDefault()
+      let user = AUTH.register(this.email, this.password);
+      sessionStorage.setItem("Email", this.email);
+      sessionStorage.setItem("Password", this.password);
+      AUTH.setUser(user);
+      this.$swal.fire("Welcome, You are now Logged in", "success");
+    }
+  }
 };
 </script>

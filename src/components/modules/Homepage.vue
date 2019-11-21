@@ -15,10 +15,7 @@
           <v-toolbar dense>
             <v-autocomplete
               v-model="select"
-              :loading="loading"
-              :items="items"
-              :search-input.sync="search"
-              cache-items
+              :items="['Talamban']"
               class="mx-3"
               flat
               hide-no-data
@@ -31,11 +28,11 @@
           </v-toolbar>
         </v-col>
       </center>
-      <v-subheader class="pl-0">Prices</v-subheader>
+      <!-- <v-subheader class="pl-0">Prices</v-subheader>
         <v-slider
           v-model="slider"
           thumb-label
-        ></v-slider>          
+        ></v-slider>           -->
     </v-card>
 
     <Results></Results>
@@ -71,21 +68,6 @@ export default {
     return {
       slider: 45,
       select: "",
-      places: ["Banilad", "Talamban"],
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        }
-      ]
     };
   },
   components: {
