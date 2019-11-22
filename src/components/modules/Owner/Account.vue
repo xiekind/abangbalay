@@ -22,18 +22,15 @@
 </template>
 
 <style scoped>
-.account {
-  margin-top: -38.85% !important;
-  margin-left: 35% !important;
-}
-
-#container {
-  padding: 15% !important;
-}
 
 #checkboxes {
   margin-top: -10% !important;
 }
+
+template{
+  background-clip: red !important;
+}
+
 </style>
 
 <script>

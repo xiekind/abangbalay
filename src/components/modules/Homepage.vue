@@ -49,9 +49,7 @@
   margin-top: 2% !important;
   cursor: pointer !important;
 }
-.results {
-  margin-top: 10% !important;
-}
+
 
 #card {
   background-color: transparent !important;

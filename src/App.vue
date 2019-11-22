@@ -31,7 +31,6 @@ export default {
 
 html , body{
   overflow-y: auto !important;
-
 }
 
 </style>
