@@ -1,6 +1,6 @@
 <template>
   <div class="account">
-    <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+    <v-card :loading="loading" class="mx-auto my-12" max-width="374" id="acc">
       <v-avatar color="indigo">
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
@@ -27,8 +27,8 @@
   margin-top: -10% !important;
 }
 
-template{
-  background-clip: red !important;
+#acc{
+  border: 1px  gray !important;
 }
 
 </style>

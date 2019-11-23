@@ -1,7 +1,7 @@
 <template>
   <div class="bhouseform">
 
-        <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+        <v-card :loading="loading" class="mx-auto my-12" max-width="374" id="bhousecard">
           <div id="container">
             <!-- <v-btn  large fab>
             <v-icon dark>mdi-plus</v-icon>
@@ -31,10 +31,9 @@
 
 <style scoped>
 
-.bhouseform {
-  margin-right: 35% !important;
+#bhousecard{
+  border: 1px gray !important;
 }
-
 #container {
   padding: 15% !important;
 }

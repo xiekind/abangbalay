@@ -6,15 +6,21 @@ import BootstrapVue from 'bootstrap-vue'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+// import Mapbox from 'mapbox-gl-vue';
 
 
 Vue.use(BootstrapVue);
 Vue.use(VueSweetalert2);
+// Vue.component('mapbox', require('./components/modules/Mapbox.vue'));
+
 Vue.config.productionTip = false
 
 new Vue({
   vuetify,
   render: h => h(App),
   router,
+  // components: {
+  //   'mapbox' : Mapbox
+  // },
   template: '<router-view></router-view>'
 }).$mount('#app')

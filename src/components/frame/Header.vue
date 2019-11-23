@@ -1,8 +1,8 @@
 <template>
 <div id="topnav">
     <v-toolbar id="toolbar"  >
-      <!-- <v-app-bar-nav-icon color="black darken-2" @click.stop="drawer = !drawer" 
-      v-if="auth.user == null"></v-app-bar-nav-icon> -->
+      <v-app-bar-nav-icon color="black darken-2" @click.stop="drawer = !drawer" 
+      v-if="auth.user == null"></v-app-bar-nav-icon>
       <!-- v-if="$route.name!='login'" -->
       <v-toolbar-title>
         <v-img 
@@ -15,7 +15,7 @@
         </v-img>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-       <!-- <v-navigation-drawer
+       <v-navigation-drawer
           v-model="drawer"
           absolute
           top
@@ -45,7 +45,7 @@
         </v-list-item-group>
 
       </v-list>
-      </v-navigation-drawer> -->
+      </v-navigation-drawer>
       <v-toolbar-items >
         <v-btn text medium id="items" @click="redirect('/login')">Login</v-btn>
         <v-divider
@@ -90,6 +90,7 @@ export default {
       items: [
         { icon: "mdi-view-dashboard", title: "Dashboard", link: "/dashboard" },
         { icon: "mdi-account", title: "Account", link: "/account" },
+        { icon: "mdi-mouse", title: "Logout", link: "/" },
       ]
     }
   },
