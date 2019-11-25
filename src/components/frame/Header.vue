@@ -67,7 +67,7 @@
   background-color: transparent !important;
 }
 #logo{
-  margin-left: -35% !important;
+  margin-left: -30% !important;
   cursor: pointer !important;
 }
 
