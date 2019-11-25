@@ -7,39 +7,57 @@
             <img
               src="https://icon-library.net/images/avatar-icon-png/avatar-icon-png-8.jpg"
               alt="Avatar"
-            />
+            >
           </div>
           <h4 class="modal-title">Create account</h4>
         </div>
         <div class="modal-body">
-            <v-text-field v-model="email" label="Email" placeholder type="text" outlined dense></v-text-field>
-            <v-text-field v-model="password" label="Password" placeholder type="password" outlined dense ></v-text-field>
+          <v-text-field
+            outlined
+            autocomplete="current-email"
+            :value="email"
+            label="Enter Email"
+            :append-icon="'mdi-email'"
+            :rules="emailRules"
+            @input="_ => (email = _)"
+          ></v-text-field>
           <div class="form-group">
-            <button
-              type="submit"
-              id="submit_user"
-              class="btn btn-primary btn-lg btn-block login-btn"
-              @click="submit"
-            >Create</button>
+            <v-text-field
+              outlined
+              autocomplete="current-password"
+              :value="userPassword"
+              label="Enter password"
+              hint="Your password passed! Password rules are not meant to be broken!"
+              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value = !value)"
+              :type="value ? 'password' : 'text'"
+              :rules="[rules.password]"
+              @input="_ => (userPassword = _)"
+            ></v-text-field>
+            <div class="form-group">
+              <button
+                type="submit"
+                id="submit_user"
+                class="btn btn-primary btn-lg btn-block login-btn"
+                @click="submit"
+              >Create</button>
+            </div>
+            <center>
+              <p>Already have an account?</p>
+              <router-link to="/login">Login</router-link>
+            </center>
           </div>
-          <center>
-            <p>Already have an account?</p>
-            <router-link to="/login">Login</router-link>
-          </center>
         </div>
       </div>
-      
+      <!-- <v-overlay :value="overlay">
+ <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>-->
     </div>
-    <!-- <v-overlay :value="overlay">
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
-    </v-overlay> -->
   </div>
-  
 </template>
 
 <style scoped lang="scss">
 @import "assets/styles/colors.scss";
-
 .modal-login {
   color: $modal-login !important;
   width: $width350 !important;
@@ -123,18 +141,46 @@
 
 <script>
 import AUTH from "services/auth";
-
 export default {
-  data() {
-    return {
-      auth: AUTH,
-      email: null,
-      password: null,
-    };
-  },
+  // data() {
+  // return {
+  // auth: AUTH,
+  // email: null,
+  // password: null,
+  // emailRules: [
+  // v => !!v || "E-mail is required",
+  // v => /.+@.+/.test(v) || "E-mail must be valid"
+  // ],
+  // passwordRules: [
+  // v => !!v || "Password is Required",
+  // v => v.length >= 8 || "Password must be atleast 8 characters"
+  // ]
+  // };
+  // },
+  data: () => ({
+    auth: AUTH,
+    email: null,
+    userPassword: "",
+    valid: true,
+    value: true,
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+/.test(v) || "E-mail must be valid"
+    ],
+    rules: {
+      required: value => !!value || "Required.",
+      password: value => {
+        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#/$%/^&/*])(?=.{8,})/;
+        return (
+          pattern.test(value) ||
+          "Min. 8 characters with at least one capital letter, a number and a special character."
+        );
+      }
+    }
+  }),
   methods: {
-    submit(e){
-      e.preventDefault()
+    submit(e) {
+      e.preventDefault();
       let user = AUTH.register(this.email, this.password);
       sessionStorage.setItem("Email", this.email);
       sessionStorage.setItem("Password", this.password);

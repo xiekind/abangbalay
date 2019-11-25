@@ -1,21 +1,27 @@
 <template>
-    <div id="dashboard">
-            <CurrentBhouse></CurrentBhouse>
-
+  <div class="dashboard">
+    <div>
+      <CurrentBhouse></CurrentBhouse>
     </div>
+
+    
+
+    
+  </div>
 </template>
 
+<style scoped>
 
-<style>
 
 </style>
 
 <script>
 import CurrentBhouse from "components/modules/Owner/CurrentBhouse.vue";
+
 export default {
-    name: "dashboard",
-    components: {
-        CurrentBhouse
-    }
-}
+  name: "dashboard",
+  components: {
+    CurrentBhouse,
+  }
+};
 </script>

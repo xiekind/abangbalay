@@ -9,11 +9,8 @@
               class="white--text align-end"
               height="200px"
               src="https://www.passerellesnumeriques.org/wp-content/uploads/2018/07/IMG_20180419_144038.png"
-            >
+            ><images ></images>
               <v-card-actions>
-                <!-- <v-btn class="ma-2" color="orange darken-2" dark @click="overlay = !overlay">
-                  <v-icon dark left>mdi-pin</v-icon>Location
-                </v-btn> -->
                 <Map></Map>
               </v-card-actions>
             </v-img>
@@ -65,12 +62,17 @@
 
 
 <style>
+.results{
+  margin-top: 2% !important;
+}
+
+
 </style>
 
 <script>
 import Form from "components/modules/Form.vue";
 import Map from "components/modules/Map.vue";
-
+import images from "components/modules/BhouseImages.vue";
 
 export default {
   data() {
@@ -82,6 +84,6 @@ export default {
       zIndex: 5
     };
   },
-  components: {Form,Map}
+  components: {Form,Map, images}
 };
 </script>

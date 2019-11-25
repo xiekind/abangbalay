@@ -2,8 +2,7 @@
 <div id="topnav">
     <v-toolbar id="toolbar"  >
       <v-app-bar-nav-icon color="black darken-2" @click.stop="drawer = !drawer" 
-      v-if="auth.user==null"></v-app-bar-nav-icon>
-      <!-- v-if="$route.name!='login'" -->
+      v-if="$route.name =='dashboard' || $route.name =='account' "></v-app-bar-nav-icon>
       <v-toolbar-title>
         <v-img 
           @click="redirect('/')"
@@ -47,13 +46,13 @@
       </v-list>
       </v-navigation-drawer>
       <v-toolbar-items >
-        <v-btn text medium id="items" @click="redirect('/login')">Login</v-btn>
+        <v-btn text medium id="items" @click="redirect('/login')" v-if="$route.name != 'dashboard'">Login</v-btn>
         <v-divider
           class="mx-4"
           inset
           vertical>
         </v-divider>
-        <v-btn text medium id="items" @click="redirect('/about')">About us</v-btn>
+        <v-btn text medium id="items" @click="redirect('/about')" v-if="$route.name != 'dashboard' ">About us</v-btn>
       </v-toolbar-items>
       
     </v-toolbar>
@@ -68,7 +67,7 @@
   background-color: transparent !important;
 }
 #logo{
-  margin-left: -35% !important;
+  margin-left: -30% !important;
   cursor: pointer !important;
 }
 
@@ -76,7 +75,6 @@
 
 <script>
 
-// import Account from 'components/modules/Owner/Account.vue'
 import ROUTER from "router";
 import AUTH from "services/auth";
 
@@ -90,12 +88,11 @@ export default {
       items: [
         { icon: "mdi-view-dashboard", title: "Dashboard", link: "/dashboard" },
         { icon: "mdi-account", title: "Account", link: "/account" },
+        { icon: "mdi-mouse", title: "Logout", link: "/" },
       ]
     }
   },
-  components: {
-    // Account,
-  },
+
   watch: {
     group() {
       this.drawer = false;

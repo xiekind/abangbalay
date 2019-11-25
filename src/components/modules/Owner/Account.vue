@@ -1,68 +1,54 @@
 <template>
-  <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Upload</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">User Profile</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="Legal first name*" required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Email*" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-col>
-            </v-row>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+  <div class="account">
+    <v-card :loading="loading" class="mx-auto my-12" max-width="374" id="acc">
+      <v-avatar color="indigo">
+        <v-icon dark>mdi-account-circle</v-icon>
+      </v-avatar>
+      <v-card-title style="color:orange ; font-size: 25px">My Account</v-card-title>
+      <v-card-text>
+        <div>
+          <v-text-field value="Jeanilyn Tancinco" label="Name" readonly></v-text-field>
+          <v-text-field value="+6312384594" label="Contact #" readonly></v-text-field>
+          <v-text-field value="jeanilyntancinco@gmail.com" label="Email address" readonly></v-text-field>
+          <v-text-field value="JeanilynTan" label="Facebook account" readonly></v-text-field>
+          <v-text-field value="**********" label="Password" readonly></v-text-field>
+        </div>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn color="deep-purple accent-4" text @click="edit">Edit</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
 
+<style scoped>
+
+#checkboxes {
+  margin-top: -10% !important;
+}
+
+#acc{
+  border: 1px  gray !important;
+}
+
+</style>
+
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-    }),
+export default {
+  data: () => ({
+    loading: false,
+    select: null,
+    items: ["Rooms for male", "Rooms for female", "Both"]
+  }),
+  methods: {
+    upload() {
+      this.loading = true;
+      setTimeout(() => (this.loading = false), 2000);
+    },
+    edit(e) {
+      e.preventDefault();
+      console.log("sds");
+    }
   }
+};
 </script>

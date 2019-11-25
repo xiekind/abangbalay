@@ -1,6 +1,5 @@
 <template>
   <div id="login">
-
     <div class="modal-dialog modal-login">
       <div class="modal-content">
         <div class="modal-header">
@@ -13,27 +12,33 @@
           <h4 class="modal-title">Login</h4>
         </div>
         <div class="modal-body">
-            <v-text-field
-              v-model="email"
-              label="Email"
-              placeholder=""
-              type="text"
-              outlined
-              dense
-            ></v-text-field>
           <v-text-field
-              v-model="password"
-              label="Password"
-              placeholder=""
-              type="password"
-              outlined
-              dense
-            ></v-text-field>
+            outlined
+            autocomplete="current-email"
+            :value="email"
+            label="Enter Email"
+            :append-icon="'mdi-email'"
+            :rules="emailRules"
+            @input="_ => (email = _)"
+          ></v-text-field>
+
+          <v-text-field
+            outlined
+            v-model="password"
+            autocomplete="current-password"
+            :value="userPassword"
+            label="Enter password"
+            hint="Your password passed! Password rules are not meant to be broken!"
+            :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="() => (value = !value)"
+            :type="value ? 'password' : 'text'"
+            :rules="[rules.password]"
+            @input="_ => (userPassword = _)"
+          ></v-text-field>
           <div class="form-group">
             <button
               type="submit"
               class="btn btn-primary btn-lg btn-block login-btn"
-              v-on:click="overlay = !overlay"
               @click="login"
             >Next</button>
           </div>
@@ -44,15 +49,11 @@
         </div>
       </div>
     </div>
-  <v-overlay :value="overlay">
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
-    </v-overlay>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "assets/styles/colors.scss";
-
 
 .modal-login {
   color: $modal-login !important;
@@ -140,51 +141,69 @@
 // import axios from 'axios';
 import AUTH from "services/auth";
 export default {
-  data() {
-    return {
-      auth: AUTH,
-      overlay: false,
-      email: null,
-      password: null
-    };
-  },
-  watch: {
-      overlay (val) {
-        val && setTimeout(() => {
-          this.overlay = false
-        }, 3000)
-      },
-    },
+  // data() {
+  // return {
+  // auth: AUTH,
+  // overlay: false,
+  // email: null,
+  // password: null
+  // };
+  // },
+  data: () => ({
+    auth: AUTH,
+    overlay: false,
+    email: null,
+    userPassword: "",
+    valid: true,
+    value: true,
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+/.test(v) || "E-mail must be valid"
+    ],
+    rules: {
+      required: value => !!value || "Required",
+      password: value => {
+        const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#/$%/^&/*])(?=.{8,})/;
+        return (
+          pattern.test(value) ||
+          "Min. 8 characters with at least one capital letter, a number and a special character."
+        );
+      }
+    }
+  }),
   methods: {
     login(e) {
-      e.preventDefault()
+      e.preventDefault();
       let user = AUTH.login(this.email, this.password);
       AUTH.setUser(user);
-      if(user != null){
-        this.$router.push('/dashboard');
+      if (user != null) {
+        this.$router.push("/dashboard");
         this.$swal.fire("Welcome, You are now Logged in", "success");
-      }else if(this.email === '' && this.password === ''){
+      } else if (this.email === "" && this.password === "") {
         this.$swal.fire("Please fill up the input field", " ", "warning");
-      }else{
-        this.$swal.fire("Incorrect username or password!", "Please try again", "error");
-      
-    }
+      } else {
+        this.$swal.fire(
+          "Incorrect username or password!",
+          "Please try again",
+          "error"
+        );
+      }
       // axios
-      //   .post("http://localhost:5555/login", {
-      //     username: this.email,
-      //     password: this.password
-      //   })
-      //   .then(res => {
-      //     console.log(res);
-      //     if (res.data.login) {
-      //       ROUTER.push('/customerdashboard')
-      //     } else {
-      //       alert('try again')
-      //     }
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
+      // .post("http://localhost:5555/login", {
+      // username: this.email,
+      // password: this.password
+      // })
+      // .then(res => {
+      // console.log(res);
+      // if (res.data.login) {
+      // ROUTER.push('/customerdashboard')
+      // } else {
+      // alert('try again')
+      // }
+      // })
+      // .catch(err => {
+      // console.log(err);
+      // });
     }
   }
 };
