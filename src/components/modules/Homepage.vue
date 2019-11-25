@@ -12,20 +12,6 @@
           </div>
         </v-card-text>
         <v-col cols="12" sm="6">
-          <!-- <v-toolbar dense>
-            <v-autocomplete
-              v-model="select"
-              :items="['Talamban']"
-              class="mx-3"
-              flat
-              hide-no-data
-              hide-details
-              placeholder="e.g Talamban"
-            ></v-autocomplete>
-            <v-btn icon @click="test">
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-          </v-toolbar>-->
           <v-toolbar dark color="orange darken-2">
             <v-autocomplete
               v-model="select"
@@ -48,7 +34,7 @@
       </center>
     </v-card>
 
-    <Results></Results>
+    <Results v-for="i in 3 " :key="i" :Details="details"></Results>
   </div>
 </template>
 

@@ -46,8 +46,10 @@
 
 
 </style>
+
 <script>
 
+import axios from 'axios';
 
 export default {
 
@@ -62,6 +64,18 @@ export default {
         landline: "723-2525"
       }
     };
+  },
+  mounted(){
+    axios.get("http://localhost:3000/results").then(res => {
+      this.ownername = res.data,
+      this.fbacc = res.data,
+      this.emailadd = res.data,
+      this.number = res.data,
+      this.landline = res.data
+      this.dialog = false;
+    }).catch(err => {
+      console.log(err)
+    })
   }
 };
 </script>

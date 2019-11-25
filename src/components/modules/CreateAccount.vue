@@ -25,14 +25,14 @@
             <v-text-field
               outlined
               autocomplete="current-password"
-              :value="userPassword"
+              :value="password"
               label="Enter password"
               hint="Your password passed! Password rules are not meant to be broken!"
               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value = !value)"
               :type="value ? 'password' : 'text'"
-              :rules="[rules.password]"
-              @input="_ => (userPassword = _)"
+              :rules="[rules.rulePassword]"
+              @input="_ => (password = _)"
             ></v-text-field>
             <div class="form-group">
               <button
@@ -140,7 +140,9 @@
 </style>
 
 <script>
-import AUTH from "services/auth";
+// import AUTH from "services/auth";
+import axios from 'axios';
+
 export default {
   // data() {
   // return {
@@ -158,9 +160,10 @@ export default {
   // };
   // },
   data: () => ({
-    auth: AUTH,
+    list_reg: [],
+    // auth: AUTH,
     email: null,
-    userPassword: "",
+    password: "",
     valid: true,
     value: true,
     emailRules: [
@@ -169,7 +172,7 @@ export default {
     ],
     rules: {
       required: value => !!value || "Required.",
-      password: value => {
+      rulePassword: value => {
         const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#/$%/^&/*])(?=.{8,})/;
         return (
           pattern.test(value) ||
@@ -181,11 +184,22 @@ export default {
   methods: {
     submit(e) {
       e.preventDefault();
-      let user = AUTH.register(this.email, this.password);
-      sessionStorage.setItem("Email", this.email);
-      sessionStorage.setItem("Password", this.password);
-      AUTH.setUser(user);
-      this.$swal.fire("Welcome, You are now Logged in", "success");
+      // let user = AUTH.register(this.email, this.password);
+      // sessionStorage.setItem("Email", this.email);
+      // sessionStorage.setItem("Password", this.password);
+      // AUTH.setUser(user);
+      // this.$swal.fire("Welcome, You are now Logged in", "success");
+      axios.post("http://localhost:3000/register",  {email : this.email , password : this.password }).then(res => {
+        if(res.data.register){
+          this.list_reg.push(res.data);
+          console.log(this.list_reg);
+          this.$route.push('/dashboard');
+        }else{
+          this.$swal.fire("Try Again")
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 };
