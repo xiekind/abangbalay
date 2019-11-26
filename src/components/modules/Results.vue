@@ -1,5 +1,5 @@
 <template>
-  <div class="results" >
+  <div class="results">
     <v-container fluid>
       <v-card>
         <v-row>
@@ -9,29 +9,47 @@
               class="white--text align-end"
               height="200px"
               src="https://www.passerellesnumeriques.org/wp-content/uploads/2018/07/IMG_20180419_144038.png"
-            ><images></images>
+            >
+              <images></images>
+
               <v-card-actions>
                 <Map></Map>
               </v-card-actions>
             </v-img>
-            <v-overlay :absolute="absolute" :opacity="opacity" :value="overlay" :z-index="zIndex">
-              <v-btn id="backbtn" color="orange darken-2" @click="overlay = false">
+
+            <v-overlay
+              :absolute="absolute"
+              :opacity="opacity"
+              :value="overlay"
+              :z-index="zIndex"
+            >
+              <v-btn
+                id="backbtn"
+                color="orange darken-2"
+                @click="overlay = false"
+              >
                 <v-icon small>mdi-arrow-left</v-icon>
               </v-btn>
               <v-card>
+                <!--IMAGE OF GOOGLE MAP-->
                 <v-img
                   id="gmap"
                   class="white--text align-end"
                   height="400px"
                   src="https://i2.wp.com/www.knowcebu.com/wp-content/uploads/2016/11/tst-25.png?resize=800%2C614"
                 ></v-img>
+                <!--END HERE-->
               </v-card>
             </v-overlay>
           </v-col>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-col cols="6" sm="4">
-            <v-card-title v-model="bHouseName">Carmelites Dormitory</v-card-title>
-            <v-card-subtitle class="pb-0" v-model="bHouseAddress">Rosellos St. Nasipit, Talamban, Cebu City.</v-card-subtitle>
+            <v-card-title v-model="bHouseName"
+              >Carmelites Dormitory</v-card-title
+            >
+            <v-card-subtitle class="pb-0" v-model="bHouseAddress"
+              >Rosellos St. Nasipit, Talamban, Cebu City.</v-card-subtitle
+            >
             <v-card-text class="text--primary">
               <div>• 5 rooms for male</div>
               <div>• 5 rooms for female</div>
@@ -49,7 +67,6 @@
                 <h3>₱ 1,500 monthly</h3>
               </v-card-text>
               <Form></Form>
-
             </center>
           </v-col>
         </v-row>
@@ -58,24 +75,21 @@
   </div>
 </template>
 
-
 <style>
-.results{
+.results {
   margin-top: 2% !important;
 }
-
-
 </style>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import Form from "components/modules/Form.vue";
 import Map from "components/modules/Map.vue";
 import images from "components/modules/BhouseImages.vue";
 
 export default {
-  props:{
-    Details :Object
+  props: {
+    Details: Object
   },
   data() {
     return {
@@ -88,14 +102,16 @@ export default {
       zIndex: 5
     };
   },
-  components: {Form,Map, images},
-  mounted(){
-    axios.get("http://localhost:3000/results").then(res => {
-      this.bHouseName = res.data,
-      this.bHouseAddress = res.data
-    }).catch(err => {
-      console.log(err)
-    })
+  components: { Form, Map, images },
+  mounted() {
+    axios
+      .get("http://localhost:3000/results")
+      .then(res => {
+        (this.bHouseName = res.data), (this.bHouseAddress = res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>

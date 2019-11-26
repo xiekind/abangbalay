@@ -62,6 +62,7 @@ import Results from "components/modules/Results.vue";
 export default {
   data() {
     return {
+      details:null,
       loading: false,
       items: [],
       search: null,
