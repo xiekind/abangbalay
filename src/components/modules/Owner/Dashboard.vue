@@ -3,10 +3,6 @@
     <div>
       <CurrentBhouse></CurrentBhouse>
     </div>
-
-    
-
-    
   </div>
 </template>
 

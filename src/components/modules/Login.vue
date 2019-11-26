@@ -138,7 +138,7 @@
 
 <script>
 // import ROUTER from "router";
-// import axios from 'axios';
+import axios from 'axios';
 import AUTH from "services/auth";
 export default {
   // data() {
@@ -188,22 +188,12 @@ export default {
           "error"
         );
       }
-      // axios
-      // .post("http://localhost:5555/login", {
-      // username: this.email,
-      // password: this.password
-      // })
-      // .then(res => {
-      // console.log(res);
-      // if (res.data.login) {
-      // ROUTER.push('/customerdashboard')
-      // } else {
-      // alert('try again')
-      // }
-      // })
-      // .catch(err => {
-      // console.log(err);
-      // });
+      axios.get("http://localhost:3000/login").then(res => {
+        this.email = res.data,
+        this.password = res.data
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 };

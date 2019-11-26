@@ -1,11 +1,7 @@
 <template>
   <div class="bhouseform">
-
         <v-card :loading="loading" class="mx-auto my-12" max-width="374" id="bhousecard">
           <div id="container">
-            <!-- <v-btn  large fab>
-            <v-icon dark>mdi-plus</v-icon>
-            </v-btn>-->
             <Upload id="uploadicon"></Upload>
           </div>
           <v-divider class="mx-4"></v-divider>
@@ -18,6 +14,13 @@
               ></v-text-field>
               <v-select v-model="select" :items="items" label="Rooms provided" required></v-select>
               <v-text-field label="Monthly Payment"></v-text-field>
+              <v-card-title>Add Contact Information</v-card-title>
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="E-mail"
+                required
+              ></v-text-field>
             </div>
           </v-card-text>
           <v-card-actions>
@@ -25,7 +28,6 @@
             <v-btn color="deep-purple accent-4" text @click="edit">Edit</v-btn>
           </v-card-actions>
         </v-card>
-
   </div>
 </template>
 

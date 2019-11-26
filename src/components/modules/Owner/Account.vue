@@ -7,10 +7,7 @@
       <v-card-title style="color:orange ; font-size: 25px">My Account</v-card-title>
       <v-card-text>
         <div>
-          <v-text-field value="Jeanilyn Tancinco" label="Name" readonly></v-text-field>
-          <v-text-field value="+6312384594" label="Contact #" readonly></v-text-field>
           <v-text-field value="jeanilyntancinco@gmail.com" label="Email address" readonly></v-text-field>
-          <v-text-field value="JeanilynTan" label="Facebook account" readonly></v-text-field>
           <v-text-field value="**********" label="Password" readonly></v-text-field>
         </div>
       </v-card-text>
