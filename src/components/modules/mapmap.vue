@@ -1,3 +1,4 @@
+<!-- this is the last code na mu gawas ta ang locator pero dili jud ang map  mismo -->
 <template>
   <div class="map">
     <v-row left>
@@ -12,6 +13,7 @@
             <v-icon dark left>mdi-pin</v-icon>Location
           </v-btn>
         </template>
+
         <v-toolbar dark color="orange darken-2">
           <v-toolbar-title>Google Map</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -38,7 +40,7 @@
           }"
           :geolocate-control="{
             show: true,
-            position: 'top-right'
+            position: 'top-left'
           }"
           @map-load="loaded"
           @map-zoomend="zoomend"
@@ -52,29 +54,21 @@
 </template>
 
 <script>
-import Mapbox from "mapbox-gl-vue";
+import Mapbox from "mapbox-gl-vue"
 
 export default {
-  components: { Mapbox },
+  components: { Mapbox,  },
   data() {
     return {
       dialog: false,
       notifications: false,
-      sound: true
+      sound: true,
     };
   },
   methods: {
-    async onMapLoaded(event) {
-      const asyncAction = event.component.action;
-
-      const action = await asyncAction.flyTo({
-        center: [30, 30],
-        zoom: 9,
-        speed: 1
-      });
-      console.log(action);
-      // this.map = event.map;
-    }
+    onMapLoaded (event) {
+      this.map = event.map;
+    },
   }
 };
 </script>
@@ -89,7 +83,3 @@ export default {
 <!--
 https://www.npmjs.com/package/mapbox-gl-vue
 -->
-
-<!-- CALCULATE AND VISUALIZE NAVIGATION ROUTS WITH HERE, JAVASCRIPT AND VUE.JS
-https://developer.here.com/blog/calculate-and-visualize-navigation-routes-with-here-javascript-and-vue.js
- -->

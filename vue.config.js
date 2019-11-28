@@ -1,7 +1,14 @@
 const path = require('path');
 const webpack = require('webpack')
 
+// let BackEnd_URL_Live = "http://172.16.3.17:3000"
+// let BackEnd_DEV = "http://localhost:3000";
+// let isDEV = false;
+
 module.exports = {
+  // APP_NAME : "firstApp",
+  // BACKEND_URL : isDEV ? BackEnd_DEV : BackEnd_URL_Live,
+
   configureWebpack: {
     resolve: {
       alias: {
