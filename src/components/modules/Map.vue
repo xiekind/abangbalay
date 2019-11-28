@@ -12,7 +12,7 @@
           <v-toolbar-title>Google Map</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn icon dark @click="dialog = false">
+            <v-btn icon dark @click="dialog = false ;transition='dialog-top-transition'">
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </v-toolbar-items>
@@ -78,6 +78,19 @@ import Mapbox from "mapbox-gl-vue";
 
 export default {
   components: { Mapbox },
+  data() {
+    return {
+      dialog: false,
+      notifications: false,
+      sound: true,
+      widgets: false,
+      // accessToken: "token_here",
+      props: {
+        mapStyle: {type : String, required: true}
+      },
+      popupCoordinates: [10, 10]
+    };
+  },
   methods: {
     loaded(map) {
       map.addLayer({
@@ -122,23 +135,14 @@ export default {
         }
       });
     },
-    zoomend() {
-      console.log("Map zoomed");
+    
+    zoomend(map, e) {
+      console.log('Map zoomed',map,e)
     },
-    // zoomend( e) {
-    //   console.log('Map zoomed')
-    // },
-    clicked(e) {
-      const title = e.features[0].properties.title;
-      console.log(title);
+    clicked(map, e) {
+      const title = e.features[0].properties.title
+      console.log(title,map)
     },
-    // zoomend(map, e) {
-    //   console.log('Map zoomed')
-    // },
-    // clicked(map, e) {
-    //   const title = e.features[0].properties.title
-    //   console.log(title)
-    // },
     geolocateError(control, positionError) {
       console.log(positionError);
     },
@@ -218,4 +222,9 @@ export default {
   }
 };
 </script>
+-->
+
+
+<!--
+https://www.npmjs.com/package/mapbox-gl-vue
 -->
