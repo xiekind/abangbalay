@@ -1,12 +1,7 @@
 <template>
   <div class="map">
     <v-row left>
-      <v-dialog
-        v-model="dialog"
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-      >
+      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
         <template v-slot:activator="{ on }">
           <v-btn class="ma-2" color="orange darken-2" dark v-on="on">
             <v-icon dark left>mdi-pin</v-icon>Location
@@ -23,34 +18,62 @@
           </v-toolbar-items>
         </v-toolbar>
 
-        <!-- <iframe
+        <mapbox
+          access-token="your access token"
+          :map-options="{
+        style: 'mapbox://styles/mapbox/light-v9',
+        center: [-96, 37.8],
+        zoom: 3,
+      }"
+        />
+
+        <!--
+         <iframe
           id="google"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d502594.0910159778!2d123.4965569557697!3d10.22271953741475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999562ef72e51%3A0xb8357cc666cdf35c!2sSouth%20Bus%20Terminal!5e0!3m2!1sen!2sph!4v1574306591806!5m2!1sen!2sph"
           allowfullscreen="1400"
-        ></iframe> -->
+        ></iframe> 
+        -->
 
         <!-- This is the MAP -->
-        <template>
+        <!-- <template>
           <MglMap :mapStyle.sync="mapStyle">
-            <!-- <MglNavigationControl position="top-right" />
-            <MglGeolocateControl position="top-right" /> -->
+           <MglNavigationControl position="top-right" />
+            <MglGeolocateControl position="top-right" />
             <MglPopup :coordinates="popupCoordinates">
               <span>Hello map!</span>
             </MglPopup>
           </MglMap>
-          <!-- <MglMap
+           <MglMap
               :mapboxGl="mapbox-gl"
               :accessToken="accessToken"
               :mapStyle.sync="mapStyle"
               @load="onMapLoaded"
-            /> -->
-        </template>
-        <!-- This is where the MAP ENDS -->
+            /> 
+        </template>-->
+        <!--  This is where the MAP ENDS -->
       </v-dialog>
     </v-row>
   </div>
 </template>
 
+
+<script>
+import Mapbox from "mapbox-gl-vue";
+
+export default {
+  components: { Mapbox }
+};
+</script>
+
+<style>
+#map {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!--
 <style scoped>
 #google {
   height: 100% !important;
@@ -108,3 +131,4 @@ export default {
   }
 };
 </script>
+-->
