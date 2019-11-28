@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack')
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -10,7 +12,12 @@ module.exports = {
         "modules": path.resolve(__dirname, 'src/modules'),
         "services": path.resolve(__dirname, 'src/services')
       }
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        mapboxgl: 'mapbox-gl',
+      }),
+    ],
   },
   "transpileDependencies": [
     "vuetify"
