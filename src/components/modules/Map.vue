@@ -46,6 +46,7 @@
           @geolocate-error="geolocateError"
           @geolocate-geolocate="geolocate"
         />
+        <location></location>
       </v-dialog>
     </v-row>
   </div>
@@ -53,9 +54,10 @@
 
 <script>
 import Mapbox from "mapbox-gl-vue";
+import location from "./location.js";
 
 export default {
-  components: { Mapbox },
+  components: { Mapbox, location },
   data() {
     return {
       dialog: false,
