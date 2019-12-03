@@ -1,4 +1,3 @@
-
 <template>
   <div class="map">
     <v-row left>
@@ -30,23 +29,6 @@
           </v-toolbar-items>
         </v-toolbar>
 
-        <!-- <mapbox
-          access-token="your access token"
-          :map-options="{
-            style: 'mapbox://styles/mapbox/light-v9',
-            center: [-96, 37.8],
-            zoom: 3
-          }"
-          :geolocate-control="{
-            show: true,
-            position: 'top-right'
-          }"
-          @map-load="onMapLoaded"
-          @map-zoomend="zoomend"
-          @map-click:points="clicked"
-          @geolocate-error="geolocateError"
-          @geolocate-geolocate="geolocate"
-        /> -->
         <mapbox
           access-token="pk.eyJ1IjoiemllIiwiYSI6ImNrM29hZmk4NTAyc2MzcGx3Ymo0ZnRnd2MifQ.B9kN2NBQF5gq8kCNKQ2YjA"
           :map-options="{
@@ -58,8 +40,25 @@
             show: true,
             position: 'top-right'
           }"
-         
+          @map-load="loaded"
+          @map-zoomend="zoomend"
+          @map-click:points="clicked"
+          @geolocate-error="geolocateError"
+          @geolocate-geolocate="geolocate"
         />
+        <!-- <mapbox
+          access-token="pk.eyJ1IjoiemllIiwiYSI6ImNrM29hZmk4NTAyc2MzcGx3Ymo0ZnRnd2MifQ.B9kN2NBQF5gq8kCNKQ2YjA"
+          :map-options="{
+            style: 'mapbox://styles/mapbox/light-v9',
+            center: [-96, 37.8],
+            zoom: 3
+          }"
+          :geolocate-control="{
+            show: true,
+            position: 'top-right'
+          }"
+         
+        /> -->
       </v-dialog>
     </v-row>
   </div>
@@ -68,7 +67,7 @@
 <script>
 import Mapbox from "mapbox-gl-vue";
 export default {
-  components: { Mapbox,  },
+  components: { Mapbox },
   data() {
     return {
       dialog: false,
@@ -77,17 +76,60 @@ export default {
     };
   },
   methods: {
-    async onMapLoaded(event) {
-      const asyncAction = event.component.action;
-      const action = await asyncAction.flyTo({
-        center: [30, 30],
-        zoom: 9,
-        speed: 1
+    loaded(map) {
+      map.addLayer({
+        id: "points",
+        type: "symbol",
+        source: {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [10.3438277, 123.91923419999999]
+                },
+                properties: {
+                  title: "Mapbox DC",
+                  icon: "monument"
+                }
+              }
+            ]
+          }
+        }
       });
-      console.log(action);
-      this.map = event.map;
+    },
+
+    zoomend() {
+      console.log(`Map zoomed`);
+    },
+    clicked(e) {
+      const title = e.features[0].properties.title;
+      console.log(title);
+    },
+    geolocateError(control, positionError) {
+      console.log(positionError);
+    },
+    geolocate(control, position) {
+      console.log(
+        `Geolocate User position: ${position.coords.latitude}, ${position.coords.longitude}`
+      );
     }
   }
+
+  //   async onMapLoaded(event) {
+  //     const asyncAction = event.component.action;
+  //     const action = await asyncAction.flyTo({
+  //       center: [30, 30],
+  //       zoom: 9,
+  //       speed: 1
+  //     });
+  //     console.log(action);
+  //     this.map = event.map;
+  //   }
+  // }
 };
 </script>
 
