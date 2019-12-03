@@ -82,7 +82,7 @@
 </style>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import Form from "components/modules/Form.vue";
 import Map from "components/modules/Map.vue";
 import images from "components/modules/BhouseImages.vue";
@@ -103,15 +103,15 @@ export default {
     };
   },
   components: { Form, Map, images },
-  mounted() {
-    axios
-      .get("http://localhost:3000/results")
-      .then(res => {
-        (this.bHouseName = res.data), (this.bHouseAddress = res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  // mounted() {
+  //   axios
+  //     .get("http://localhost:3000/results")
+  //     .then(res => {
+  //       (this.bHouseName = res.data), (this.bHouseAddress = res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 };
 </script>
