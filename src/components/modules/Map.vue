@@ -1,3 +1,4 @@
+
 <template>
   <div class="map">
     <v-row left>
@@ -29,7 +30,7 @@
           </v-toolbar-items>
         </v-toolbar>
 
-        <mapbox
+        <!-- <mapbox
           access-token="your access token"
           :map-options="{
             style: 'mapbox://styles/mapbox/light-v9',
@@ -40,13 +41,25 @@
             show: true,
             position: 'top-right'
           }"
-          @map-load="loaded"
+          @map-load="onMapLoaded"
           @map-zoomend="zoomend"
           @map-click:points="clicked"
           @geolocate-error="geolocateError"
           @geolocate-geolocate="geolocate"
+        /> -->
+        <mapbox
+          access-token="pk.eyJ1IjoiemllIiwiYSI6ImNrM29hZmk4NTAyc2MzcGx3Ymo0ZnRnd2MifQ.B9kN2NBQF5gq8kCNKQ2YjA"
+          :map-options="{
+            style: 'mapbox://styles/mapbox/light-v9',
+            center: [-96, 37.8],
+            zoom: 3
+          }"
+          :geolocate-control="{
+            show: true,
+            position: 'top-right'
+          }"
+         
         />
-        <location></location>
       </v-dialog>
     </v-row>
   </div>
@@ -54,10 +67,8 @@
 
 <script>
 import Mapbox from "mapbox-gl-vue";
-import location from "./location.js";
-
 export default {
-  components: { Mapbox, location },
+  components: { Mapbox,  },
   data() {
     return {
       dialog: false,
@@ -68,14 +79,13 @@ export default {
   methods: {
     async onMapLoaded(event) {
       const asyncAction = event.component.action;
-
       const action = await asyncAction.flyTo({
         center: [30, 30],
         zoom: 9,
         speed: 1
       });
       console.log(action);
-      // this.map = event.map;
+      this.map = event.map;
     }
   }
 };
@@ -87,11 +97,3 @@ export default {
   height: 91% !important;
 }
 </style>
-
-<!--
-https://www.npmjs.com/package/mapbox-gl-vue
--->
-
-<!-- CALCULATE AND VISUALIZE NAVIGATION ROUTS WITH HERE, JAVASCRIPT AND VUE.JS
-https://developer.here.com/blog/calculate-and-visualize-navigation-routes-with-here-javascript-and-vue.js
- -->
