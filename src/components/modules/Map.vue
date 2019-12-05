@@ -33,7 +33,7 @@
           :map-options="{
             style: 'mapbox://styles/mapbox/light-v9',
             center: [-96, 37.8],
-            zoom: 7,
+            zoom: 9,
             // Map style to use
             style: 'mapbox://styles/mapbox/satellite-streets-v10'
           }"
@@ -72,33 +72,33 @@ export default {
   },
   methods: {
     onMapLoaded(map) {
-      const geojson = {
-        type: "FeatureCollection",
-        features: [
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-77.032, 38.913]
-            },
-            properties: {
-              title: "Mapbox",
-              description: "Washington, D.C."
-            }
-          },
-          {
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [-122.414, 37.776]
-            },
-            properties: {
-              title: "Mapbox",
-              description: "San Francisco, California"
-            }
-          }
-        ]
-      };
+      // const geojson = {
+      //   type: "FeatureCollection",
+      //   features: [
+      //     {
+      //       type: "Feature",
+      //       geometry: {
+      //         type: "Point",
+      //         coordinates: [-77.032, 38.913]
+      //       },
+      //       properties: {
+      //         title: "Mapbox",
+      //         description: "Washington, D.C."
+      //       }
+      //     },
+      //     {
+      //       type: "Feature",
+      //       geometry: {
+      //         type: "Point",
+      //         coordinates: [-122.414, 37.776]
+      //       },
+      //       properties: {
+      //         title: "Mapbox",
+      //         description: "San Francisco, California"
+      //       }
+      //     }
+      //   ]
+      // };
     console.log(map)
     },
   }
